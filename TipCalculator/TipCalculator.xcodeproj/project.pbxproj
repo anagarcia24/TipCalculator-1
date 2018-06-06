@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280477DF20C8813200B1497C /* TipCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 280477DD20C8813200B1497C /* TipCalculator.xcdatamodeld */; };
 		2859A34B20C726A3003E1198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859A34A20C726A3003E1198 /* AppDelegate.swift */; };
 		2859A34D20C726A3003E1198 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859A34C20C726A3003E1198 /* ViewController.swift */; };
 		2859A35020C726A3003E1198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2859A34E20C726A3003E1198 /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		2859A35520C726A5003E1198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2859A35320C726A5003E1198 /* LaunchScreen.storyboard */; };
 		2859A36020C726A5003E1198 /* TipCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859A35F20C726A5003E1198 /* TipCalculatorTests.swift */; };
 		2859A36B20C726A5003E1198 /* TipCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859A36A20C726A5003E1198 /* TipCalculatorUITests.swift */; };
+		2859A37C20C7B0E4003E1198 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859A37B20C7B0E4003E1198 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		280477DE20C8813200B1497C /* TipCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TipCalculator.xcdatamodel; sourceTree = "<group>"; };
 		2859A34720C726A3003E1198 /* TipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2859A34A20C726A3003E1198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2859A34C20C726A3003E1198 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		2859A36620C726A5003E1198 /* TipCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2859A36A20C726A5003E1198 /* TipCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorUITests.swift; sourceTree = "<group>"; };
 		2859A36C20C726A5003E1198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2859A37B20C7B0E4003E1198 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +103,12 @@
 			children = (
 				2859A34A20C726A3003E1198 /* AppDelegate.swift */,
 				2859A34C20C726A3003E1198 /* ViewController.swift */,
+				2859A37B20C7B0E4003E1198 /* SettingsViewController.swift */,
 				2859A34E20C726A3003E1198 /* Main.storyboard */,
 				2859A35120C726A5003E1198 /* Assets.xcassets */,
 				2859A35320C726A5003E1198 /* LaunchScreen.storyboard */,
 				2859A35620C726A5003E1198 /* Info.plist */,
+				280477DD20C8813200B1497C /* TipCalculator.xcdatamodeld */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2859A34D20C726A3003E1198 /* ViewController.swift in Sources */,
+				280477DF20C8813200B1497C /* TipCalculator.xcdatamodeld in Sources */,
 				2859A34B20C726A3003E1198 /* AppDelegate.swift in Sources */,
+				2859A37C20C7B0E4003E1198 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +586,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		280477DD20C8813200B1497C /* TipCalculator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				280477DE20C8813200B1497C /* TipCalculator.xcdatamodel */,
+			);
+			currentVersion = 280477DE20C8813200B1497C /* TipCalculator.xcdatamodel */;
+			path = TipCalculator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2859A33F20C726A3003E1198 /* Project object */;
 }

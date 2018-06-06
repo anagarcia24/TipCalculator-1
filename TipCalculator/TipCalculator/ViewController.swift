@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UINavigationBarDelegate {
 
     @IBOutlet weak var inputLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var navigationbar: UINavigationBar!
+    @IBOutlet weak var tipPercentageLabel: UILabel!
     
     var decimalExists = false
     var countBeforeDecimal = 0
-    var tipPercentage = 0.10
+    var tipPercentage = 0.15
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +28,38 @@ class ViewController: UIViewController, UINavigationBarDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Percent")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        if let results = fetchedResults {
+            if results.count == 0 {
+                // add a default tip percent
+                addTipPercentage()
+            } else {
+                print(results.count)
+                tipPercentage = results[0].value(forKey: "percentage") as! Double
+                tipPercentageLabel.text = "+" + String(tipPercentage * 100) + "%"
+            }
+        } else {
+            print("Could not fetch")
+        }
+    }
+
 
     @IBAction func numbersButton(_ sender: UIButton) {
         if inputLabel.text == "0" {
@@ -64,6 +96,28 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     // update UI label
     func updateTotalAmount() {
         totalAmountLabel.text = String(round(100 * Double(inputLabel.text!)! * (1 + tipPercentage))/100)
+    }
+    
+    // adds a NSObject for the tip percentage (Only will be called on first use of app)
+    func addTipPercentage() {
+        // storing core data
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        // create the entity we want to save
+        let entity = NSEntityDescription.entity(forEntityName: "Percent", in: managedContext)
+        let defaultPercent = NSManagedObject(entity: entity!, insertInto: managedContext)
+        // set the attribute values
+        defaultPercent.setValue(0.15, forKey: "percentage")
+        
+        // Commit the changes.
+        do {
+            try managedContext.save()
+        } catch {
+            // what to do if an error occurs?
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
     }
     
     // UI custom navigation bar auto correct for status bar
