@@ -26,12 +26,11 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+![Video Walkthrough](https://github.com/mistersquiish/TipCalculator/blob/master/Walkthrough.gif)
 
 ## Notes
-I built this app before but lost the code, so I built it again but with much more added functionality.
+- I built this app before but lost the code, so I built it again but with much more added functionality.
+- Logo design credit to Joshua Swattridge from the Noun Project
 
 ## License
 
