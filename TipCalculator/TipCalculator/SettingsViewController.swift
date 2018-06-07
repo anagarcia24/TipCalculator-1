@@ -16,7 +16,34 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Percent")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        if let results = fetchedResults {
+            switch results[0].value(forKey: "percentage") as! Double {
+            case 0.05: tipPercentageSegmentedControl.selectedSegmentIndex = 0
+            case 0.10: tipPercentageSegmentedControl.selectedSegmentIndex = 1
+            case 0.15: tipPercentageSegmentedControl.selectedSegmentIndex = 2
+            case 0.18: tipPercentageSegmentedControl.selectedSegmentIndex = 3
+            case 0.20: tipPercentageSegmentedControl.selectedSegmentIndex = 4
+            case 0.25: tipPercentageSegmentedControl.selectedSegmentIndex = 5
+            case 0.30: tipPercentageSegmentedControl.selectedSegmentIndex = 6
+            case 0.35: tipPercentageSegmentedControl.selectedSegmentIndex = 7
+            default: tipPercentageSegmentedControl.selectedSegmentIndex = 0
+            }
+        } else {
+            print("Could not fetch")
+        }
     }
 
     override func didReceiveMemoryWarning() {

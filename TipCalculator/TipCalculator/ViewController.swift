@@ -16,9 +16,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak var navigationbar: UINavigationBar!
     @IBOutlet weak var tipPercentageLabel: UILabel!
     @IBOutlet weak var keypadView: UIView!
+    @IBOutlet weak var userInputView: UIView!
+    @IBOutlet weak var totalAmountView: UIView!
     
+    @IBOutlet weak var userInputViewTopConstraint: NSLayoutConstraint!
     
     var decimalExists = false
+    var isCalculating = false
     var countBeforeDecimal = 0
     var tipPercentage = 0.15
     
@@ -27,9 +31,20 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         
         navigationbar.delegate = self
         keypadView.frame = keypadView.frame.offsetBy(dx: 0, dy: 329)
+        totalAmountView.frame = totalAmountView.frame.offsetBy(dx: 0, dy: 124)
+        totalAmountView.alpha = 0
+        userInputView.alpha = 0
+        
         UIView.animate(withDuration: 0.50, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
             self.keypadView.frame = self.keypadView.frame.offsetBy(dx: 0, dy: -329)
+        }, completion: { (value: Bool) in self.totalAmountView.alpha = 1 })
+        
+        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            self.userInputView.alpha = 1
+            self.userInputView.frame = self.userInputView.frame.offsetBy(dx: 0, dy: 88.5)
+            
         }, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +72,6 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 // add a default tip percent
                 addTipPercentage()
             } else {
-                print(results.count)
                 tipPercentage = results[0].value(forKey: "percentage") as! Double
                 tipPercentageLabel.text = "+" + String(tipPercentage * 100) + "%"
             }
@@ -73,6 +87,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         }
         if decimalExists == false || (inputLabel.text?.count)! - countBeforeDecimal < 2 {
             inputLabel.text = inputLabel.text! + String(sender.tag - 1)
+            if isCalculating == false {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+                    self.userInputView.frame = self.userInputView.frame.offsetBy(dx: 0, dy: -88.5)
+                    self.totalAmountView.frame = self.totalAmountView.frame.offsetBy(dx: 0, dy: -124)
+                }, completion: nil)
+                isCalculating = true
+            }
         }
         updateTotalAmount()
     }
@@ -88,13 +109,22 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     
     @IBAction func backspaceButton(_ sender: UIButton) {
         if inputLabel.text != "0" {
-            if inputLabel.text?.count == 1 {
+            if inputLabel.text?.count == 1 || (inputLabel.text?.last == "." && inputLabel.text?.first == "0") {
                 inputLabel.text = "0"
+                decimalExists = false
+                countBeforeDecimal = 0
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+                    self.userInputView.frame = self.userInputView.frame.offsetBy(dx: 0, dy: 88.5)
+                    self.totalAmountView.frame = self.totalAmountView.frame.offsetBy(dx: 0, dy: 124)
+                }, completion: nil)
+                isCalculating = false
             } else {
+                if inputLabel.text?.last == "." {
+                    decimalExists = false
+                    countBeforeDecimal = 0
+                }
                 inputLabel.text = String(inputLabel.text!.prefix((inputLabel.text?.count)! - 1))
             }
-            decimalExists = false
-            countBeforeDecimal = 0
         }
         updateTotalAmount()
     }
