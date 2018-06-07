@@ -260,12 +260,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMD-32-Rz2">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMD-32-Rz2">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="GxO-NR-i1Z"/>
-                                </constraints>
                                 <color key="barTintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -313,14 +311,10 @@
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="LMD-32-Rz2" firstAttribute="top" secondItem="3qH-Bm-bCh" secondAttribute="top" id="C2h-L5-XCu"/>
-                            <constraint firstItem="LMD-32-Rz2" firstAttribute="leading" secondItem="3qH-Bm-bCh" secondAttribute="leading" id="MzK-5n-0Mi"/>
-                            <constraint firstItem="LMD-32-Rz2" firstAttribute="trailing" secondItem="3qH-Bm-bCh" secondAttribute="trailing" id="f5H-Vd-HDo"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3qH-Bm-bCh"/>
                     </view>
                     <connections>
+                        <outlet property="navigationbar" destination="LMD-32-Rz2" id="1BE-5B-7XK"/>
                         <outlet property="tipPercentageSegmentedControl" destination="PWq-pJ-B5z" id="Ijb-Fk-l93"/>
                     </connections>
                 </viewController>

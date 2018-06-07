@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UINavigationBarDelegate {
 
     @IBOutlet weak var tipPercentageSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var navigationbar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationbar.delegate = self
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Percent")
@@ -95,7 +97,11 @@ class SettingsViewController: UIViewController {
             abort()
         }
 
-        
+    }
+    
+    // UI custom navigation bar auto correct for status bar
+    public func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
     
 }
