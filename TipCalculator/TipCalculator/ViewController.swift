@@ -15,6 +15,8 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var navigationbar: UINavigationBar!
     @IBOutlet weak var tipPercentageLabel: UILabel!
+    @IBOutlet weak var keypadView: UIView!
+    
     
     var decimalExists = false
     var countBeforeDecimal = 0
@@ -24,6 +26,10 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         
         navigationbar.delegate = self
+        keypadView.frame = keypadView.frame.offsetBy(dx: 0, dy: 329)
+        UIView.animate(withDuration: 0.50, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
+            self.keypadView.frame = self.keypadView.frame.offsetBy(dx: 0, dy: -329)
+        }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
